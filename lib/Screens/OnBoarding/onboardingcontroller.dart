@@ -43,14 +43,15 @@ class OnBoardingController extends GetxController{
         bgColor: obcolor3,
       ),
     ),
-
+    WelcomeScreen(),
   ];
 
-  animateToNextSlide() {
-    int nextPage = controller.currentPage + 1;
-    controller.animateToPage(page: nextPage);
-  }
+  // animateToNextSlide() {
+  //   int nextPage = controller.currentPage + 1;
+  //   controller.animateToPage(page: nextPage);
+  // }
 
   onPageChangedCallback(int activePageIndex) => currentPage.value = activePageIndex;
+
 }
 

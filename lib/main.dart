@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stepometer/Screens/OnBoarding/onboarding.dart';
-import 'package:stepometer/Screens/homescreen.dart';
+import 'package:stepometer/Screens/welcomescreen/welcomescreen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: OnBoardingScreen(),
     );

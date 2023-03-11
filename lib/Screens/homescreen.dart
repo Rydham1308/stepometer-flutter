@@ -103,20 +103,20 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
+            const Text(
               'Steps taken:',
               style: TextStyle(fontSize: 30),
             ),
             Text(
               _steps,
-              style: TextStyle(fontSize: 60),
+              style: const TextStyle(fontSize: 60),
             ),
-            Divider(
+            const Divider(
               height: 100,
               thickness: 0,
               color: Colors.white,
             ),
-            Text(
+            const Text(
               'Pedestrian status:',
               style: TextStyle(fontSize: 30),
             ),
@@ -132,18 +132,18 @@ class _HomePageState extends State<HomePage> {
               child: Text(
                 _status,
                 style: _status == 'walking' || _status == 'stopped'
-                    ? TextStyle(fontSize: 30)
-                    : TextStyle(fontSize: 20, color: Colors.red),
+                    ? const TextStyle(fontSize: 30)
+                    : const TextStyle(fontSize: 20, color: Colors.red),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Center(
               child: ElevatedButton(
                 onPressed: () {
                 },
-                child: Text('RESET'),
+                child: const Text('RESET'),
               ),
             ),
           ],

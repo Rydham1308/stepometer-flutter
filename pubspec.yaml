@@ -39,6 +39,7 @@ dependencies:
   liquid_swipe: ^3.0.0
   smooth_page_indicator: ^1.0.1
   get: ^4.6.5
+  permission_handler: ^10.2.0
 
 dev_dependencies:
   flutter_test:

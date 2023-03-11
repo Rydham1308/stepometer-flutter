@@ -22,8 +22,8 @@ const String counterText3 = "3 of 3";
 //#region --- Welcome Screen Text
 
 const String tWelcomeTitle = "Welcome,";
-const String tWelcomeSubTitle = "Join Step O Meter and start calculating your daily steps.";
+const String tWelcomeSubTitle = "Track Your Steps Journey With Us And Feel The Change In Your Body.";
 const String tLogin = "LogIn";
 const String tSignup = "SignUp";
-
+const String tGuest = "Continue as Guest";
 //endregion

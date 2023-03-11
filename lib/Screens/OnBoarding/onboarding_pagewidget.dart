@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stepometer/Screens/OnBoarding/onboarding_model.dart';
 
+import '../welcomescreen/welcomescreen.dart';
+
 class OnBoardingPageWidget  extends StatelessWidget {
 
   const OnBoardingPageWidget({
@@ -52,14 +54,31 @@ class OnBoardingPageWidget  extends StatelessWidget {
           Text(
             model.counterText,
             style: TextStyle(
-              fontFamily: "Raleway",
-              fontWeight: FontWeight.w500,
-              fontSize: 20,
+              //fontFamily: "Raleway",
+              fontWeight: FontWeight.w100,
+              fontSize: 15,
             ),
           ),
-          const SizedBox(
-            height: 80.0,
-          )
+          //#region Skip Btn
+          GestureDetector(
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const WelcomeScreen(),
+                ),
+              );
+            },
+            child: const Text(
+              "Skip",
+              style: TextStyle(
+                fontFamily: "Raleway",
+                fontSize: 20,
+                color: Color.fromARGB(255, 34, 77, 59),
+              ),
+            ),
+          ),
+          //endregion
         ],
       ),
     );
