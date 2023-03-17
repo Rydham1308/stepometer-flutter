@@ -13,3 +13,9 @@ const String obimag3 = "assets/images/img3.png";
 const String wsimag1 = "assets/images/wsimg1.png";
 
 //endregion
+
+//#region Login & up
+
+const String googleicon = "assets/images/googlelogo.png";
+
+//endregion

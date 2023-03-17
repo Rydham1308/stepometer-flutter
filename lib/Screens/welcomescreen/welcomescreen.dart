@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:stepometer/Constants/colors.dart';
 import 'package:stepometer/Constants/images.dart';
 import 'package:stepometer/Constants/texts.dart';
+import 'package:stepometer/Screens/SignInUp/login.dart';
 import 'package:stepometer/Screens/homescreen.dart';
+
+import '../SignInUp/signup.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -52,7 +55,14 @@ class WelcomeScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: OutlinedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const LogIn(),
+                              ),
+                            );
+                          },
                           style: ElevatedButton.styleFrom(
                             elevation: 00,
                             minimumSize: const Size(250, 50),
@@ -75,7 +85,14 @@ class WelcomeScreen extends StatelessWidget {
                       const SizedBox(width: 10.0),
                       Expanded(
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const SignUp(),
+                              ),
+                            );
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor:
                                 const Color.fromARGB(255, 34, 77, 59),

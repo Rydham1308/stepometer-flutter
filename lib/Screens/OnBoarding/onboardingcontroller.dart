@@ -5,15 +5,14 @@ import 'package:liquid_swipe/PageHelpers/LiquidController.dart';
 import 'package:stepometer/Constants/colors.dart';
 import 'package:stepometer/Constants/images.dart';
 import 'package:stepometer/Constants/texts.dart';
-import 'package:stepometer/Screens/OnBoarding/onboarding_model.dart';
 import 'package:stepometer/Screens/OnBoarding/onboarding_pagewidget.dart';
+import 'package:stepometer/Screens/OnBoarding/onboarding_model.dart';
 import 'package:stepometer/Screens/welcomescreen/welcomescreen.dart';
 
 class OnBoardingController extends GetxController{
 
   final controller = LiquidController();
   RxInt currentPage = 0.obs;
-
 
   final pages = [
     OnBoardingPageWidget(

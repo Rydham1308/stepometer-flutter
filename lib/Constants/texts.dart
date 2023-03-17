@@ -27,3 +27,12 @@ const String tLogin = "LogIn";
 const String tSignup = "SignUp";
 const String tGuest = "Continue as Guest";
 //endregion
+
+//#region --- Login & up
+
+const String tlogintitle = "Log into \nyour account";
+const String tgoogletitle = "  Continue with Google";
+
+const String tforgottitle = "Don\'t have an account ?";
+
+//endregion

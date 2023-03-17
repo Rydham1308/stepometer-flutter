@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:stepometer/Constants/colors.dart';
 import 'package:stepometer/Screens/OnBoarding/onboarding.dart';
 import 'package:stepometer/Screens/welcomescreen/welcomescreen.dart';
 
@@ -19,7 +20,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: maintheme,
+        fontFamily: 'Raleway',
+      ),
       debugShowCheckedModeBanner: false,
       home: OnBoardingScreen(),
     );

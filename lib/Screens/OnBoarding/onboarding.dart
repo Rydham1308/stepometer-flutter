@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:stepometer/Constants/colors.dart';
 import 'package:stepometer/Screens/OnBoarding/onboardingcontroller.dart';
-import 'package:stepometer/Screens/homescreen.dart';
-import 'package:stepometer/Screens/welcomescreen/welcomescreen.dart';
+
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
@@ -29,7 +26,7 @@ class OnBoardingScreen extends StatelessWidget {
             liquidController: obController.controller,
             onPageChangeCallback: obController.onPageChangedCallback,
             //fullTransitionValue: 600,
-            slideIconWidget: controller.currentPage == 3 ?  Icon(Icons.arrow_back_ios,color: obcolor2,) : Icon(Icons.arrow_back_ios),
+            slideIconWidget: ImageIcon(size: 40,AssetImage("assets/images/walk.gif")),
             waveType: WaveType.liquidReveal,
             positionSlideIcon: 0.47,
 
