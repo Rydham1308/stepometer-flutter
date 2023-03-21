@@ -3,8 +3,7 @@ import 'package:stepometer/Constants/colors.dart';
 import 'package:stepometer/Constants/images.dart';
 import 'package:stepometer/Constants/texts.dart';
 import 'package:stepometer/Screens/SignInUp/login.dart';
-import 'package:stepometer/Screens/homescreen.dart';
-
+import 'package:stepometer/Screens/HomePage/homescreen.dart';
 import '../SignInUp/signup.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -64,6 +63,8 @@ class WelcomeScreen extends StatelessWidget {
                             );
                           },
                           style: ElevatedButton.styleFrom(
+                            foregroundColor: Color.fromARGB(255, 34, 77, 59),
+                            shadowColor: Colors.transparent,
                             elevation: 00,
                             minimumSize: const Size(250, 50),
                             side: const BorderSide(
@@ -94,6 +95,7 @@ class WelcomeScreen extends StatelessWidget {
                             );
                           },
                           style: ElevatedButton.styleFrom(
+                            shadowColor: Colors.transparent,
                             backgroundColor:
                                 const Color.fromARGB(255, 34, 77, 59),
                             elevation: 0,
@@ -127,6 +129,8 @@ class WelcomeScreen extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
+                        foregroundColor: Color.fromARGB(255, 34, 77, 59),
+                        shadowColor: Colors.transparent,
                         elevation: 00,
                         minimumSize: const Size(250, 50),
                         side: const BorderSide(
