@@ -10,6 +10,7 @@ const String obimag3 = "assets/images/img3.png";
 
 //#region Welcome Screen
 
+const String walkgif = "assets/images/walk.gif";
 const String wsimag1 = "assets/images/wsimg1.png";
 
 //endregion

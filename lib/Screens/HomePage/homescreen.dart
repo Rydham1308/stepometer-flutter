@@ -2,6 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:pedometer/pedometer.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:stepometer/Constants/texts.dart';
+import 'package:stepometer/Screens/Permission/permissionrequestbox.dart';
+
+import '../../Constants/colors.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,10 +20,10 @@ String formatDate(DateTime d) {
 }
 
 class _HomePageState extends State<HomePage> {
-
   late Stream<StepCount> _stepCountStream;
   late Stream<PedestrianStatus> _pedestrianStatusStream;
   String _status = '?', _steps = '?';
+  final int goalSteps = 6000;
 
   @override
   void initState() {
@@ -70,28 +75,21 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(
+      appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.blue,
+        backgroundColor: mainthemecolor,
         elevation: 0,
+        title: const Text(
+          'StepoMeter',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
         actions: [
-          GestureDetector(
-            onTap: () {},
-            child: Container(
-              padding: const EdgeInsets.all(5),
-              child: const Icon(
-                CupertinoIcons.heart,
-                color: Colors.white,
-                size: 30,
-              ),
-            ),
-          ),
           GestureDetector(
             onTap: () {},
             child: Container(
               padding: const EdgeInsets.only(right: 20, left: 5),
               child: const Icon(
-                Icons.shopping_bag_rounded,
+                CupertinoIcons.line_horizontal_3_decrease,
                 color: Colors.white,
                 size: 30,
               ),
@@ -124,8 +122,8 @@ class _HomePageState extends State<HomePage> {
               _status == 'walking'
                   ? Icons.directions_walk
                   : _status == 'stopped'
-                  ? Icons.accessibility_new
-                  : Icons.error,
+                      ? Icons.accessibility_new
+                      : Icons.error,
               size: 100,
             ),
             Center(
@@ -139,13 +137,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 20,
             ),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                },
-                child: const Text('RESET'),
-              ),
-            ),
+
           ],
         ),
       ),

@@ -36,3 +36,17 @@ const String tgoogletitle = "  Continue with Google";
 const String tforgottitle = "Don\'t have an account ?";
 
 //endregion
+
+//#region --- Permission Request
+const String tgrantper = "Grant Permission";
+const String tpermissionreq = "We required Physical Sensor to detect your movements.";
+
+const String tperque ="Why do we need permissions ?";
+const String tpermissiondenined = "Without this Authorization, the app will not work.";
+
+const String tperstep1 = "1. Tap 'Permissions'.";
+const String tperstep2 = "2. Tap 'Physical activity'.";
+const String tperstep3 = "3. Choose 'Allow'.";
+
+const String tgotoset= "Go To Set";
+//endregion

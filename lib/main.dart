@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stepometer/Constants/colors.dart';
 import 'package:stepometer/Screens/OnBoarding/onboarding.dart';
-import 'package:stepometer/Screens/welcomescreen/welcomescreen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +25,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Raleway',
       ),
       debugShowCheckedModeBanner: false,
-      home: OnBoardingScreen(),
+      home: const OnBoardingScreen(),
     );
   }
 }

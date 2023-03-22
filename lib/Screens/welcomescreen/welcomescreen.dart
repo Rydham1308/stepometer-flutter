@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:stepometer/Constants/colors.dart';
 import 'package:stepometer/Constants/images.dart';
 import 'package:stepometer/Constants/texts.dart';
+import 'package:stepometer/Screens/Permission/permissionperdenied.dart';
+import 'package:stepometer/Screens/Permission/permissionrequestbox.dart';
 import 'package:stepometer/Screens/SignInUp/login.dart';
 import 'package:stepometer/Screens/HomePage/homescreen.dart';
 import '../SignInUp/signup.dart';
@@ -63,7 +66,7 @@ class WelcomeScreen extends StatelessWidget {
                             );
                           },
                           style: ElevatedButton.styleFrom(
-                            foregroundColor: Color.fromARGB(255, 34, 77, 59),
+                            foregroundColor: const Color.fromARGB(255, 34, 77, 59),
                             shadowColor: Colors.transparent,
                             elevation: 00,
                             minimumSize: const Size(250, 50),
@@ -114,19 +117,50 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Container(
                     width: double.maxFinite,
                     child: OutlinedButton(
-                      onPressed: () {
+                      onPressed: () async {
+
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const HomePage(),
                           ),
                         );
+
+                        PermissionStatus physicalStatus =
+                        await Permission.activityRecognition.request();
+
+                        if (physicalStatus == PermissionStatus.granted) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const HomePage(),
+                            ),
+                          );
+                        }
+
+                        if (physicalStatus == PermissionStatus.denied) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PermissionRequestBox(),
+                            ),
+                          );
+                        }
+
+                        if (physicalStatus == PermissionStatus.permanentlyDenied) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PermissionPerDenied(),
+                            ),
+                          );
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Color.fromARGB(255, 34, 77, 59),
