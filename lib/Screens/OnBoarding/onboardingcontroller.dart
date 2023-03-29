@@ -13,7 +13,6 @@ class OnBoardingController extends GetxController{
 
   final controller = LiquidController();
   RxInt currentPage = 0.obs;
-
   final pages = [
     OnBoardingPageWidget(
       model: OnBoardingModel(
@@ -44,7 +43,6 @@ class OnBoardingController extends GetxController{
     ),
     WelcomeScreen(),
   ];
-
   // animateToNextSlide() {
   //   int nextPage = controller.currentPage + 1;
   //   controller.animateToPage(page: nextPage);

@@ -3,6 +3,7 @@ import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:stepometer/Constants/colors.dart';
 import 'package:stepometer/Screens/OnBoarding/onboardingcontroller.dart';
+import 'package:stepometer/Screens/welcomescreen/welcomescreen.dart';
 
 
 class OnBoardingScreen extends StatelessWidget {
@@ -12,8 +13,7 @@ class OnBoardingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final obController = OnBoardingController();
-    final controller = LiquidController();
-    RxInt currentPage = 0.obs;
+
     return Scaffold(
       body: Stack(
         alignment: Alignment.center,
@@ -26,7 +26,7 @@ class OnBoardingScreen extends StatelessWidget {
             liquidController: obController.controller,
             onPageChangeCallback: obController.onPageChangedCallback,
             //fullTransitionValue: 600,
-            slideIconWidget: ImageIcon(size: 40,AssetImage("assets/images/walk.gif")),
+            slideIconWidget: obController.controller == WelcomeScreen() ? null : ImageIcon(size: 40,AssetImage("assets/images/walk.gif")),
             waveType: WaveType.liquidReveal,
             positionSlideIcon: 0.47,
 
