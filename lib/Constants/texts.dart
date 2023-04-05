@@ -50,3 +50,12 @@ const String tperstep3 = "3. Choose 'Allow'.";
 
 const String tgotoset= "Go To Set";
 //endregion
+
+
+//#region --- Bottom Nav Bar
+
+const String tmainscreen = 'Dashboard';
+const String tsecondcreen = 'History';
+const String tthirdscreen = 'Profile';
+
+//endregion
