@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:stepometer/Constants/colors.dart';
 import 'package:stepometer/Screens/OnBoarding/onboarding.dart';
 
 Future<void> main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  var box = await Hive.openBox('stepBox');
+
   SystemChrome.setPreferredOrientations(
     [
       DeviceOrientation.portraitDown,

@@ -44,11 +44,16 @@ dependencies:
   google_nav_bar: ^5.0.6
   percent_indicator: ^4.2.3
   font_awesome_flutter: ^10.4.0
+  hive:
+  hive_flutter:
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: "^0.12.0"
+  hive_generator:
+  build_runner:
 
 flutter_icons:
   android: "launcher_icon"

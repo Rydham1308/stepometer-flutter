@@ -4,9 +4,11 @@ import 'package:jiffy/jiffy.dart';
 import 'package:pedometer/pedometer.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:stepometer/Screens/HomePage/GetSteps/getstepcount.dart';
+import 'package:stepometer/Screens/HomePage/Widgets/getgoalsheet.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../Constants/colors.dart';
+import '../../Constants/images.dart';
 import '../../Constants/texts.dart';
 import '../SignInUp/signup.dart';
 
@@ -73,10 +75,11 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
+
     double steps = double.parse(_steps);
     int goalSteps = 7000;
-
     double percent = steps / goalSteps;
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -110,7 +113,6 @@ class _DashboardState extends State<Dashboard> {
                 ],
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: CircularPercentIndicator(
@@ -127,7 +129,6 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -141,8 +142,8 @@ class _DashboardState extends State<Dashboard> {
                     _status == 'walking'
                         ? Icons.directions_walk
                         : _status == 'stopped'
-                        ? Icons.accessibility_new
-                        : Icons.error,
+                            ? Icons.accessibility_new
+                            : Icons.error,
                     size: 20,
                   ),
                   Center(
@@ -153,12 +154,9 @@ class _DashboardState extends State<Dashboard> {
                           : const TextStyle(fontSize: 15, color: Colors.red),
                     ),
                   ),
-
                 ],
               ),
             ),
-
-
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: Container(
@@ -171,12 +169,27 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
             ),
-
             Container(
               child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
+                onPressed: () {
+                  showModalBottomSheet(
+                      isScrollControlled: true,
 
+                      backgroundColor: mainthemecolor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(30),
+                            topLeft: Radius.circular(30)),
+                      ),
+                      context: context,
+                      builder: (context) {
+                        return Padding(
+                          padding: MediaQuery.of(context).viewInsets,
+                          child: GetGoalSheet(),
+                        );
+                      });
+                },
+                style: ElevatedButton.styleFrom(
                   shadowColor: Colors.transparent,
                   backgroundColor: mainthemecolor,
                   elevation: 0,
@@ -194,7 +207,6 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
             ),
-
             Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
