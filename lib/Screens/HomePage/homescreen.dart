@@ -9,12 +9,10 @@ import 'package:stepometer/Constants/texts.dart';
 import 'package:stepometer/Screens/HomePage/dashboard.dart';
 import 'package:stepometer/Screens/HomePage/profilescreen.dart';
 import 'package:stepometer/Screens/Permission/permissionrequestbox.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../Constants/colors.dart';
 import 'GetSteps/getstepcount.dart';
-import 'Widgets/bottomnavbar.dart';
-import 'history.dart';
+import 'historypage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -40,7 +38,6 @@ class _HomePageState extends State<HomePage> {
 
   void _onItemTapped(int index) {
     setState(() {
-
       _selectedIndex = index;
     });
   }
@@ -53,6 +50,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      //#region ---- APP BAR
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: mainthemecolor,
@@ -75,9 +74,15 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+      //endregion
+
+      //#region ---- BODY PART
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
+      //endregion
+
+      //#region ---- BOTTOM NAV BAR
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -122,15 +127,10 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
+      //endregion
+
     );
   }
 
 
-}
-
-class _StepData {
-  _StepData(this.steps, this.goal);
-
-  final String steps;
-  final double goal;
 }

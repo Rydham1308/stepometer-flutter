@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:pedometer/pedometer.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:stepometer/Screens/HomePage/GetSteps/getstepcount.dart';
 import 'package:stepometer/Screens/HomePage/Widgets/getgoalsheet.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
-
+import 'package:stepometer/Screens/HomePage/profilescreen.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 import '../../Constants/colors.dart';
 import '../../Constants/images.dart';
 import '../../Constants/texts.dart';
@@ -23,17 +24,29 @@ class Dashboard extends StatefulWidget {
   State<Dashboard> createState() => _DashboardState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   late Stream<StepCount> _stepCountStream;
   late Stream<PedestrianStatus> _pedestrianStatusStream;
   String _status = '?', _steps = '?';
+  bool _isPlay = false;
+  late AnimationController _playcontroller;
 
   @override
   void initState() {
-    super.initState();
     initPlatformState();
+    _playcontroller =
+        AnimationController(duration: Duration(milliseconds: 690), vsync: this);
+    super.initState();
   }
 
+  @override
+  void dispose() {
+    _playcontroller.dispose();
+    super.dispose();
+  }
+
+
+//#region ==> ---- Pedometer Counters
   void onStepCount(StepCount event) {
     print(event);
     setState(() {
@@ -72,20 +85,23 @@ class _DashboardState extends State<Dashboard> {
     _stepCountStream.listen(onStepCount).onError(onStepCountError);
     if (!mounted) return;
   }
+//endregion
+
 
   @override
   Widget build(BuildContext context) {
-
     double steps = double.parse(_steps);
     int goalSteps = 7000;
-    double percent = steps / goalSteps;
 
     return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+
+            //#region ---- DayDate
             Container(
+              padding: EdgeInsets.only(bottom: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -113,30 +129,102 @@ class _DashboardState extends State<Dashboard> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CircularPercentIndicator(
-                radius: 100,
-                lineWidth: 25,
-                percent: percent,
-                progressColor: mainthemecolor,
-                backgroundColor: Colors.black12,
-                circularStrokeCap: CircularStrokeCap.round,
-                center: Text(
-                  _steps,
-                  // todaySteps?.toString()??'0',
-                  style: const TextStyle(fontSize: 60),
+            //endregion
+
+            //#region ---- Percent Indicator & stop Btn
+            Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                Container(
+                  height: 250,
+                  width: 250,
+                  child: SfRadialGauge(
+                    animationDuration: 2500,
+                    enableLoadingAnimation: true,
+                    axes: <RadialAxis>[
+                      RadialAxis(
+                        pointers: <GaugePointer>[
+                          RangePointer(
+                            value: steps / goalSteps,
+                            cornerStyle: CornerStyle.bothCurve,
+                            width: 0.2,
+                            sizeUnit: GaugeSizeUnit.factor,
+                          )
+                        ],
+                        minimum: 0,
+                        maximum: 1,
+                        showLabels: false,
+                        showTicks: false,
+                        axisLineStyle: AxisLineStyle(
+                          thickness: 0.2,
+                          cornerStyle: CornerStyle.bothCurve,
+                          color: Color.fromARGB(30, 0, 169, 181),
+                          thicknessUnit: GaugeSizeUnit.factor,
+                        ),
+                        annotations: <GaugeAnnotation>[
+                          GaugeAnnotation(
+                            positionFactor: 0.1,
+                            angle: 90,
+                            widget: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  _steps,
+                                  style: const TextStyle(
+                                      fontSize: 50,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  "/ ${goalSteps}",
+                                  style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w100),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+                InkWell(
+                  borderRadius: BorderRadius.circular(30),
+                  child: Container(
+                    decoration: BoxDecoration(color: mainthemecolor,borderRadius: BorderRadius.circular(30),),
+                    width: 50,
+                    height: 50,
+                    child: Center(
+                      child: AnimatedIcon(
+                        icon: AnimatedIcons.pause_play,
+                        progress: _playcontroller,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  onTap: () {
+                    if (_isPlay == false) {
+                      _playcontroller.forward();
+                      _isPlay = true;
+                    } else {
+                      _playcontroller.reverse();
+                      _isPlay = false;
+                    }
+                  },
+                ),
+              ],
             ),
+            //endregion
+
+            //#region ---- Status Text
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    'Pedestrian status :',
-                    style: TextStyle(fontSize: 18),
+                    'Status : ',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                   ),
                   Icon(
                     _status == 'walking'
@@ -144,37 +232,27 @@ class _DashboardState extends State<Dashboard> {
                         : _status == 'stopped'
                             ? Icons.accessibility_new
                             : Icons.error,
-                    size: 20,
+                    size: 30,
                   ),
                   Center(
                     child: Text(
                       _status,
                       style: _status == 'walking' || _status == 'stopped'
-                          ? const TextStyle(fontSize: 15)
-                          : const TextStyle(fontSize: 15, color: Colors.red),
+                          ? const TextStyle(fontSize: 18)
+                          : const TextStyle(fontSize: 18, color: Colors.red),
                     ),
                   ),
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: Container(
-                child: Text(
-                  "GOAL : $goalSteps Steps",
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-            ),
+            //endregion
+
+            //#region ---- Change Goal Btn
             Container(
               child: ElevatedButton(
                 onPressed: () {
                   showModalBottomSheet(
                       isScrollControlled: true,
-
                       backgroundColor: mainthemecolor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
@@ -207,6 +285,9 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
             ),
+            //endregion
+
+            //#region ---- Other Details Cards
             Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -262,6 +343,8 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ],
             ),
+            //endregion
+
           ],
         ),
       ),
