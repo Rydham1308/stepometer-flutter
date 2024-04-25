@@ -22,7 +22,6 @@ class _PedometerScreenState extends State<PedometerScreen> {
       setState(() {
         checkResetStepCount();
         _stepCount = event.steps;
-
       });
     });
   }

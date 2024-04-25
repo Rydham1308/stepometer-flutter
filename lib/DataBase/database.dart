@@ -31,7 +31,7 @@ class MyDatabase{
     List<GoalModel> goalList = [];
     Database db = await initDatabase();
     List<Map<String, Object?>> data =
-    await db.rawQuery('select * from Tbl_User');
+    await db.rawQuery('select * from tbl_goalsteps');
     for(int i=0; i<data.length; i++)
     {
       GoalModel model = GoalModel();
@@ -40,5 +40,15 @@ class MyDatabase{
       goalList.add(model);
     }
     return goalList;
+  }
+
+  Future<void> updateGoalStep({goalID,goalCount})
+  async {
+    Database db = await initDatabase();
+    Map<String, Object?> map = Map();
+    map['goalCount'] = goalCount;
+    await db.update(
+        'tbl_goalsteps', map, where: 'goalID = ?', whereArgs: [1]);
+    //print(":::${goalCount}:::::${goalID}::::${map['goalCount']}");
   }
 }

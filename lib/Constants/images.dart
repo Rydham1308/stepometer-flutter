@@ -20,3 +20,5 @@ const String wsimag1 = "assets/images/wsimg1.png";
 const String googleicon = "assets/images/googlelogo.png";
 
 //endregion
+
+const String profileimg = "assets/images/Omoji1.jpg";

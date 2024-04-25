@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
 
   int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
+  static List<Widget> _widgetOptions = <Widget>[
     Dashboard(),
     HistoryPage(),
     ProfilePage(),
@@ -60,7 +60,8 @@ class _HomePageState extends State<HomePage> {
           'StepoMeter',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        actions: [
+
+        actions: _selectedIndex == 2 ? [
           GestureDetector(
             onTap: () {},
             child: Container(
@@ -72,7 +73,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-        ],
+        ]: null
       ),
       //endregion
 

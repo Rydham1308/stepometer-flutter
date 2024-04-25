@@ -35,6 +35,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData(
           primarySwatch: maintheme,
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: mainthemecolor,
+            primary: mainthemecolor,
+          ),
           fontFamily: GoogleFonts.poppins().fontFamily,
         ),
         debugShowCheckedModeBanner: false,
